@@ -12,8 +12,23 @@ function addTask(){
         alert("You must add your task!")
     }
     else{
-        let li = document.createElement("li");
-        li.innerHTML = inputBox.value;
-        listContainer.appendChild(li);
+        let list = document.createElement("li");
+        list.innerHTML = inputBox.value;
+        listContainer.appendChild(list);
+        let spanTag = document.createElement("span");
+        spanTag.innerHTML = "\u00d7";
+        list.appendChild(spanTag);
     }
+    inputBox.value = "";
 };
+
+listContainer.addEventListener("click", function(e){
+    if(e.target.tagName === "LI"){
+        e.target.classList.toggle("checked");
+    }
+    else if(e.target.tagName === "SPAN"){
+        e.target.parentElement.remove();
+    }
+
+    
+}, false);
